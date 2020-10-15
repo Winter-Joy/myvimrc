@@ -1,0 +1,366 @@
+priority -50
+
+global !p
+import vim
+
+# Set g:ultisnips_php_scalar_types to 1 if you'd like to enable PHP 7's scalar types for return values
+def isPHPScalarTypesEnabled():
+	isEnabled = vim.eval("get(g:, 'ultisnips_php_scalar_types', 0)") == "1"
+	return isEnabled or re.match('<\?php\s+declare\(strict_types=[01]\);', '\n'.join(vim.current.window.buffer))
+endglobal
+
+## Snippets from SnipMate, taken from
+## https://github.com/scrooloose/snipmate-snippets.git
+
+snippet gm "PHP Class Getter" b
+/**
+ * Getter for $1
+ *
+ * @return ${2:string}
+ */
+public function get${1/\w+\s*/\u$0/}()`!p snip.rv = ': '+t[2] if isPHPScalarTypesEnabled() else ''`
+{
+    return $this->$1;
+}
+endsnippet
+
+snippet sm "PHP Class Setter" b
+/**
+ * Setter for $1
+ *
+ * @param ${2:string} $$1
+ * @author ${4:`!v g:snips_author`}
+ * @return ${3:`!p snip.rv=snip.basename`}
+ */
+public function set${1/\w+\s*/\u$0/}(${4:${2/(void|string|int|integer|double|float|object|boolear|null|mixed|number|resource)|(.*)/(?1::$2 )/}}$$1)
+{
+    $this->$1 = $$1;
+
+    ${5:return $this;}
+}
+endsnippet
+
+snippet gs "PHP Class Getter Setter" b
+/**
+ * Getter for $1
+ *
+ * @return ${2:string}
+ */
+public function get${1/\w+\s*/\u$0/}()`!p snip.rv = ': '+t[2] if isPHPScalarTypesEnabled() else ''`
+{
+    return $this->$1;
+}
+
+/**
+ * Setter for $1
+ *
+ * @param $2 $$1
+ * @return ${3:`!p snip.rv=snip.basename`}
+ */
+public function set${1/\w+\s*/\u$0/}(${4:${2/(void|string|int|integer|double|float|object|boolear|null|mixed|number|resource)|(.*)/(?1::$2 )/}}$$1)
+{
+    $this->$1 = $$1;
+
+    ${5:return $this;}
+}
+endsnippet
+
+snippet pub "Public function" b
+/**
+ * $1
+ * ${2:comment}
+ * Date: `!v strftime("%Y-%m-%d %H:%M:%S")`
+ * User: zhangguojun
+ * param $3
+ * return void
+ */
+public function ${1:name}(${3:$params})
+{
+	${VISUAL}${5:return null;}
+}
+endsnippet
+
+snippet pro "Protected function" b
+/**
+ * ${3:undocumented function}
+ *
+ * @return ${4:void}
+ */
+protected function ${1:name}(${2:$param})
+{
+	${VISUAL}${5:return null;}
+}
+$0
+endsnippet
+
+snippet pri "Private function" b
+/**
+ * $1
+ * ${2:comment}$0
+ * Date: `!v strftime("%Y-%m-%d %H:%M:%S")`
+ * User: zhangguojun
+ * param $3
+ * return void
+ */
+private function ${1:name}(${3:$param})
+{
+	${VISUAL}${5:return null;}
+}
+endsnippet
+
+snippet pubs "Public static function" b
+/**
+ * ${3:undocumented function}
+ *
+ * @return ${4:void}
+ */
+public static function ${1:name}(${2:$param})
+{
+	${VISUAL}${5:return null;}
+}
+$0
+endsnippet
+
+snippet try "try catch"
+try{
+	${VISUAL}
+}catch(\Exception $e){
+	throw new \Exception('${1:$e->getMessage()}')
+}
+endsnippet
+
+snippet pros "Protected static function" b
+/**
+ * ${3:undocumented function}
+ *
+ * @return ${4:void}
+ */
+protected static function ${1:name}(${2:$param})
+{
+	${VISUAL}${5:return null;}
+}
+$0
+endsnippet
+
+snippet pris "Private static function" b
+/**
+ * ${3:undocumented function}
+ *
+ * @return ${4:void}
+ */
+private static function ${1:name}(${2:$param})
+{
+	${VISUAL}${5:return null;}
+}
+$0
+endsnippet
+
+snippet fu "Function snip" b
+function ${1:name}(${2:$param})
+{
+	${VISUAL}${3:return null;}
+}
+$0
+endsnippet
+
+snippet fup "function snip paste" b
+public function ${1:`!v p`}(${2:$param})
+{
+	${3}
+}
+endsnippet
+
+snippet new "New class instance" b
+$${1:variableName} = new ${2:${1/\w+\s*/\u$0/}}($3);
+$0
+endsnippet
+
+snippet ns "namespace declaration" b
+namespace ${1:`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`};
+endsnippet
+
+snippet class "Class declaration template" b
+<?php
+
+namespace ${1:`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`};
+
+/**
+ * Class ${1:`!p snip.rv=snip.basename`}
+ * @author ${2:`!v g:snips_author`}
+ */
+class $1
+{
+}
+endsnippet
+
+snippet interface "Interface declaration template" b
+<?php
+
+namespace ${1:`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`};
+
+/**
+ * Interface ${1:`!p snip.rv=snip.basename`}
+ * @author ${2:`!v g:snips_author`}
+ */
+interface $1
+{
+	public function ${3:someFunction}();$4
+}
+endsnippet
+
+snippet trait "Trait declaration template" b
+<?php
+
+namespace ${1:`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`};
+
+/**
+ * Trait ${1:`!p snip.rv=snip.basename`}
+ * @author ${2:`!v g:snips_author`}
+ */
+trait $1
+{
+}
+endsnippet
+
+snippet construct "__construct()" b
+/**
+ * @param$2 ${1/, /\n     * \@param /g}
+ */
+public function __construct(${1:$dependencies})
+{${1/\w* ?\$(\w+)(, )*/\n        $this->$1 = $$1;/g}
+}
+$0
+endsnippet
+
+# PHPUnit snippets
+snippet testcase "class XYZTest extends \PHPUnit_Framework_TestCase { ... }"
+<?php
+
+namespace `!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`;
+
+/**
+ * @author `!v g:snips_author`
+ */
+class `!p
+snip.rv = re.match(r'.*(?=\.)', fn).group()
+` extends \PHPUnit_Framework_TestCase
+{
+	public function test$1()
+	{
+		${0:${VISUAL}}
+	}
+}
+endsnippet
+
+snippet testcase6 "class XYZTest extends TestCase { ... }"
+<?php
+
+namespace `!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`;
+
+use PHPUnit\Framework\TestCase;
+
+/**
+ * @author `!v g:snips_author`
+ */
+class `!p
+snip.rv = re.match(r'.*(?=\.)', fn).group()
+` extends TestCase
+{
+	public function test$1()
+	{
+		${0:${VISUAL}}
+	}
+}
+endsnippet
+
+snippet throw "thorw new exception"
+throw new \Exception('${1}');
+endsnippet
+
+snippet php "new php script" b
+<?php
+/**
+ * Created By Vim
+ * User : `!v g:snips_author`
+ * Date : `!v strftime("%Y-%m-%d")`
+ * Time : `!v strftime("%H:%M:%S")`
+ */
+
+
+namespace App\${1:`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`};
+
+/**
+ * Class $3
+ * ${1}
+ * author : ${4:`!v g:snips_author`}
+ */
+class ${3:`!v expand('%:t:r')`}
+{
+	${2}
+
+}
+endsnippet
+
+snippet phpe "new php script" b
+<?php
+/**
+ * Created By Vim
+ * User : `!v g:snips_author`
+ * Date : `!v strftime("%Y-%m-%d")`
+ * Time : `!v strftime("%H:%M:%S")`
+ */
+
+
+namespace App\${1:`!p
+relpath = os.path.relpath(path)
+m = re.search(r'[A-Z].+(?=/)', relpath)
+if m:
+	snip.rv = m.group().replace('/', '\\')
+`};
+
+/**
+ * Class $3
+ * ${1}
+ * author : ${5:`!v g:snips_author`}
+ */
+class ${4:`!v expand('%:t:r')`} extends ${3}
+{
+	${2}
+}
+endsnippet
+# :vim:ft=snippets:
