@@ -2,8 +2,8 @@ set autoread
 set t_Co=256
 colorscheme darkblue
 syntax enable
-syntax on 
-"set mouse=a
+syntax on
+set mouse=a
 set autoindent
 set cindent
 set smarttab
@@ -28,22 +28,31 @@ set listchars=tab:»※,trail:※
 set list
 set showcmd
 set copyindent
+
+"color
+hi Comment ctermfg =darkgrey
+
+autocmd InsertLeave WinEnter * set cursorline
+autocmd InsertEnter WinLeave * set nocursorline
+
 "autocmd BufWritePost *.php call CheckPHP()
-au BufNewFile,BufRead *.css,*.html,*.js,*.vue set tabstop=2
-au BufNewFile,BufRead *.css,*.html,*.js,*.vue set softtabstop=2
-au BufNewFile,BufRead *.css,*.html,*.js,*.vue set shiftwidth=2
-au BufNewFile,BufRead *.css,*.html,*.js,*.vue set expandtab
-au BufNewFile,BufRead *.css,*.html,*.js,*.vue set autoindent
-au BufNewFile,BufRead *.css,*.html,*.js,*.vue set fileformat=unix
+au BufNewFile,BufRead *.css,*.html,*.js,*.vue setlocal tabstop=2
+au BufNewFile,BufRead *.css,*.html,*.js,*.vue setlocal softtabstop=2
+au BufNewFile,BufRead *.css,*.html,*.js,*.vue setlocal shiftwidth=2
+au BufNewFile,BufRead *.css,*.html,*.js,*.vue setlocal expandtab
+au BufNewFile,BufRead *.css,*.html,*.js,*.vue setlocal autoindent
+au BufNewFile,BufRead *.css,*.html,*.js,*.vue setlocal fileformat=unix
 au BufNewFile,BufRead *.py
-            \set tabstop=4
-            \set softtabstop=4
-            \set shiftwidth=4
-            \set textwidth=79
-            \set expandtab
-            \set autoindent
-            \set fileformat=unix
-au BufRead *.vue set filetype=vue
+			\setlocal tabstop=4
+			\setlocal softtabstop=4
+			\setlocal shiftwidth=4
+			\setlocal textwidth=79
+			\setlocal expandtab
+			\setlocal autoindent
+			\setlocal fileformat=unix
+au BufRead *.vue setlocal filetype=vue
+""au BufRead *.wxml setlocal filetype=html
+"au BufRead *.wxss setlocal filetype=css
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -61,8 +70,8 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 hi Normal ctermfg=252 ctermbg=none
 "set autowriteall
 set updatetime=300
-au BufWinLeave * silent mkview  " 保存文件的折叠状态
-au BufRead * silent loadview    " 恢复文件的折叠状态
+"au BufWinLeave * silent mkview  " 保存文件的折叠状态
+"au BufRead * silent loadview    " 恢复文件的折叠状态
 
 " ale-setting {{{
 let g:ale_set_highlights = 0
@@ -79,50 +88,23 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_lint_on_enter = 0
 
 "普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
-"<Leader>d查看错误或警告的详细信息
 "使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
 let g:ale_linters = {
-\   'c++': ['clang'],
-\   'c': ['clang'],
-\   'python': ['pylint'],
-\}
+			\   'c++': ['clang'],
+			\   'c': ['clang'],
+			\   'python': ['pylint'],
+			\}
 " }}}
 let g:gundo_prefer_python3 = 1
 if executable('cquery')
-    au User lsp_setup call lsp#register_server({
-                \ 'name': 'cquery',
-                \ 'cmd': {server_info->['cquery']},
-                \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
-                \ 'initialization_options': { 'cacheDirectory': '/path/to/cquery/cache' },
-                \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
-                \ })
+	au User lsp_setup call lsp#register_server({
+				\ 'name': 'cquery',
+				\ 'cmd': {server_info->['cquery']},
+				\ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
+				\ 'initialization_options': { 'cacheDirectory': '/path/to/cquery/cache' },
+				\ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+				\ })
 endif
 
-let g:trigger_size = 0.2 * 1048576
-
-augroup hugefile
-  autocmd!
-  autocmd BufReadPre *
-        \ let size = getfsize(expand('<afile>')) |
-        \ if (size > g:trigger_size) || (size == -2) |
-        \   echohl WarningMsg | echomsg 'WARNING: altering options for this huge file!' | echohl None |
-        \   exec 'CocDisable' |
-        \ else |
-        \   exec 'CocEnable' |
-        \ endif |
-        \ unlet size
-augroup END
-
-"coc启动延迟
-let g:coc_start_at_startup=0
-function! CocTimerStart(timer)
-    exec "CocStart"
-endfunction
-call timer_start(500,'CocTimerStart',{'repeat':1})
-" 对齐线
-let g:indent_guides_enable_on_vim_startup = 0
-let g:indent_guides_auto_colors = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
-
-let g:snips_email="winterjoy0121@163.com"

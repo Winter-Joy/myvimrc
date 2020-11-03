@@ -20,3 +20,12 @@ function! CheckPHP()
         endif
     endif
 endfunction
+
+function! OpenBrowser()
+    let result = system('php -S 127.0.0.1:8888')
+    echo result
+    "let file_path = g:home_path .expand('%')
+    "let command_str = "xdg-open "."'".file_path."'"
+    "echohl command_str
+    "execute "!". command_str
+endfunction

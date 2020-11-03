@@ -32,9 +32,11 @@ Plugin 'dyng/ctrlsf.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-rooter'
 Plugin 'boydos/emmet-vim'
-Plugin 'nathanaelkane/vim-indent-guides' 
+Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'posva/vim-vue'
 Plugin 'neoclide/coc.nvim'
+Plugin 'L9'
+Plugin 'airblade/vim-gitgutter'
 "Plugin 'codota/tabnine-vim'
 "Plugin 'easymotion/vim-easymotion'
 ""Plugin 'Shougo/denite.nvim'
@@ -50,17 +52,16 @@ Plugin 'neoclide/coc.nvim'
 ""Plugin 'yonchu/accelerated-smooth-scroll'
 ""Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 "Plugin 'joonty/vdebug'
-"Plugin 'chemzqm/wxapp.vim'
+Plugin 'chemzqm/wxapp.vim'
 "Plugin 'ryanoasis/vim-devicons'
 ""Plugin 'edkolev/tmuxline.vim'
 ""Plugin 'vim-scripts/indentpython.vim'
 ""Plugin 'nvie/vim-flake8'
 ""Plugin 'Chiel92/vim-autoformat'
 ""Plugin 'davidhalter/jedi-vim'
-"Plugin 'vim-scripts/DrawIt'
+Plugin 'vim-scripts/DrawIt'
 
-let g:Lf_UseVersionControlTool = 1
-call vundle#end()    
+call vundle#end()
 filetype plugin indent on 
 
 execute pathogen#infect()

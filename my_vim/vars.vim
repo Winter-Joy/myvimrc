@@ -104,7 +104,7 @@ let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = ""
 
-let g:ctrlsf_ignore_dir = ['bower_components',  'vendor','runtime']
+let g:ctrlsf_ignore_dir = ['bower_components', 'vendor', 'runtime', 'node_module']
 
 let g:snips_author = 'zhangguojun'
 
@@ -116,3 +116,30 @@ let g:blade_custom_directives_pairs = {
       \   'markdown': 'endmarkdown',
       \   'cache': 'endcache',
       \ }
+
+"html
+let g:home_path="C:/Users/91684/AppData/Local/Packages/CanonicalGroupLimited.Ubuntu20.04onWindows_79rhkp1fndgsc/LocalState/rootfs"
+let g:file_path="/home/winterjoy/code/py/browser/index.html"
+
+let g:Lf_WindowHeight = 0.5
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+let g:Lf_PreviewCode = 1
+let g:Lf_PreviewPopupWidth = 100
+let g:Lf_PopupWidth = 0.75
+let g:Lf_AutoResize = 1
+"let g:Lf_PopupPreviewPosition = 'cursor'
+"let g:Lf_PopupPosition = [2,3]
+" Show icons, icons are shown by default
+let g:Lf_ShowDevIcons = 0
+" For GUI vim, the icon font can be specify like this, for example
+let g:Lf_DevIconsFont = "DroidSansMono Nerd Font Mono"
+" If needs
+"set ambiwidth=double
+let g:Lf_UseVersionControlTool = 1
+
+let g:snips_email="winterjoy0121@163.com"
+let g:autoclose_vim_commentmode = 1
+" 对齐线
+let g:indent_guides_enable_on_vim_startup = 0
+let g:indent_guides_auto_colors = 1

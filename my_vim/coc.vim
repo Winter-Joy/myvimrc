@@ -161,3 +161,24 @@ highlight CocErrorFloat ctermfg=White  guifg=#ff0000
 highlight CocWarningFloat ctermfg=White  guifg=#ff0000
 highlight CocHintFloat ctermfg=White  guifg=#ff0000
 ""highlight CocInfoFloat ctermfg=White  guifg=#ff0000
+let g:trigger_size = 0.2 * 1048576
+
+augroup hugefile
+  autocmd!
+  autocmd BufReadPre *
+        \ let size = getfsize(expand('<afile>')) |
+        \ if (size > g:trigger_size) || (size == -2) |
+        \   echohl WarningMsg | echomsg 'WARNING: altering options for this huge file!' | echohl None |
+        \   exec 'CocDisable' |
+        \ else |
+        \   exec 'CocEnable' |
+        \ endif |
+        \ unlet size
+augroup END
+
+"coc启动延迟
+let g:coc_start_at_startup=0
+function! CocTimerStart(timer)
+    exec "CocStart"
+endfunction
+call timer_start(500,'CocTimerStart',{'repeat':1})
