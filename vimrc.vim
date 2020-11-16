@@ -34,11 +34,17 @@ Plugin 'airblade/vim-rooter'
 Plugin 'boydos/emmet-vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'posva/vim-vue'
-Plugin 'neoclide/coc.nvim'
+"Plugin 'prabirshrestha/vim-lsp'
+"Plugin 'prabirshrestha/async.vim'
+"Plugin 'neoclide/coc.nvim'
+"Plugin 'zgpio/coc.nvim'
+Plugin 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plugin 'L9'
 Plugin 'airblade/vim-gitgutter'
+"Plugin 'mattn/vim-lsp-settings'
+"Plugin 'prabirshrestha/asyncomplete.vim'
 "Plugin 'codota/tabnine-vim'
-"Plugin 'easymotion/vim-easymotion'
+Plugin 'easymotion/vim-easymotion'
 ""Plugin 'Shougo/denite.nvim'
 ""Plugin 'chemzqm/todoapp.vim'
 "plugin"Plugin 'w0rp/ale'
@@ -71,6 +77,7 @@ source ~/.vim/my_vim/function.vim
 source ~/.vim/my_vim/options.vim
 source ~/.vim/my_vim/map.vim
 source ~/.vim/my_vim/vars.vim
-source ~/.vim/my_vim/ycm.vim
+"source ~/.vim/my_vim/ycm.vim
 source ~/.vim/my_vim/jump.vim
 source ~/.vim/my_vim/coc.vim
+"source ~/.vim/my_vim/lsp.vim

@@ -50,7 +50,7 @@ let g:airline#extensions#tabline#keymap_ignored_filetypes =
 let airline#extensions#tabline#ignore_bufadd_pat =
             \ '\c\vgundo|undotree|vimfiler|tagbar|nerd_tree'
 let g:airline#extensions#tabline#show_close_button = 1
-  let g:airline#extensions#tabline#close_symbol = 'X'
+let g:airline#extensions#tabline#close_symbol = 'X'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
@@ -70,20 +70,6 @@ let g:airline#extensions#tmuxline#enabled = 0
 "debug port
 let g:deguggerPort = 91927
 
-
-
-"ycm
-
-
-let g:ycm_filetype_whitelist = { 
-            \ "c":1,
-            \ "cpp":1, 
-            \ "objc":1,
-            \ "sh":1,
-            \ "zsh":1,
-            \ "py":1,
-            \ "zimbu":1
-            \}
 "autoformat
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0

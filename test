@@ -1,0 +1,4 @@
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+123dfadsfaew
+Fri Nov  6 09:19:11 UTC 2020

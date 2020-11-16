@@ -1,9 +1,16 @@
+"=========================================
+" Author: zhangguojun  
+" 
+if exists("b:my_map_vim")
+	finish
+endif
+let b:my_map_vim = 1
+
 "ab命令
 ab atime <c-r>=strftime("%Y-%m-%d %H:%M:%S")<cr>
 ab azgj zhangguojun
 iab zg zhangguojun
 ab pa call Paste()
-
 
 inoremap jk <ESC>
 let g:UltiSnipsListSnippets = "<leader><tab>"
@@ -18,7 +25,9 @@ nnoremap <silent> <leader>1 :NERDTreeToggle<CR>
 
 nnoremap <silent> <F4> :LeaderfSelf<CR>
 nnoremap <silent> <leader>H :LeaderfMru<CR>
-nnoremap <silent> <leader>h :LeaderfMruCwd<CR>
+nnoremap <silent><nowait> <leader>h :LeaderfMruCwd<CR>
+nnoremap <silent><nowait> <leader>j :LeaderfMruCwd<CR>
+nnoremap <silent><nowait> j :LeaderfMruCwd<CR>
 nnoremap <silent><nowait> <leader>u :LeaderfFunction<CR>
 noremap t :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
 
@@ -97,7 +106,6 @@ imap <C-b> <plug>(emmet-expand-abbr)
 noremap <leader>ie :IndentGuidesToggle<cr>
 
 "移动
-noremap <c-d> <c-e><c-e><c-e><c-e><c-e><c-e><c-e><c-e><c-e><c-e><c-e><c-e><c-e><c-e><c-e><c-e><c-e><c-e><c-e><c-e>
 noremap H ^
 noremap L g_
 inoremap <c-l> <ESC>la
@@ -120,5 +128,9 @@ nmap <leader>so :so %<CR>
 nmap sp <Plug>(ale_previous_wrap)
 nmap sn <Plug>(ale_next_wrap)
 map <leader>w <ESC>:w<CR>
-nmap <nowait> <leader>X <leader>h<CR>
+"nmap <nowait> <leader>X <leader>h<CR>
 inoremap <leader>q <ESC>A;<ESC>
+
+"退出
+nmap q :q<CR>
+nnoremap gq q

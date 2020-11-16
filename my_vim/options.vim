@@ -1,9 +1,15 @@
+"=========================================
+" Author: zhangguojun  
+if exists("b:my_options_vim")
+	finish
+endif
+let b:my_options_vim = 1
 set autoread
 set t_Co=256
 colorscheme darkblue
 syntax enable
 syntax on
-set mouse=a
+"set mouse=a
 set autoindent
 set cindent
 set smarttab
@@ -13,12 +19,13 @@ set expandtab
 set smartindent
 set shiftwidth=4
 set tabstop=4
-set mouseshape=i:udsizing
+"set mouseshape=i:udsizing
 set so=20
 set noswapfile
 set cursorline
 set linebreak
 set foldmethod=indent
+set foldlevel=1
 set ruler
 set showmatch
 set laststatus=2
@@ -70,8 +77,8 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 hi Normal ctermfg=252 ctermbg=none
 "set autowriteall
 set updatetime=300
-"au BufWinLeave * silent mkview  " 保存文件的折叠状态
-"au BufRead * silent loadview    " 恢复文件的折叠状态
+au BufWinLeave * silent mkview  " 保存文件的折叠状态
+au BufRead * silent loadview    " 恢复文件的折叠状态
 
 " ale-setting {{{
 let g:ale_set_highlights = 0
@@ -96,15 +103,21 @@ let g:ale_linters = {
 			\}
 " }}}
 let g:gundo_prefer_python3 = 1
-if executable('cquery')
-	au User lsp_setup call lsp#register_server({
-				\ 'name': 'cquery',
-				\ 'cmd': {server_info->['cquery']},
-				\ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
-				\ 'initialization_options': { 'cacheDirectory': '/path/to/cquery/cache' },
-				\ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
-				\ })
-endif
+"if executable('cquery')
+	"au User lsp_setup call lsp#register_server({
+				"\ 'name': 'cquery',
+				"\ 'cmd': {server_info->['cquery']},
+				"\ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
+				"\ 'initialization_options': { 'cacheDirectory': '/path/to/cquery/cache' },
+				"\ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+				"\ })
+"endif
 
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+
+
+hi DiffAdd     ctermbg=4 guibg=darkblue
+hi DiffChange  term=bold ctermbg=12 guibg=darkmagenta
+hi DiffDelete  term=bold ctermfg=12 ctermbg=14 gui=bold guifg=Blue guibg=DarkCyan
+hi DiffText    term=reverse cterm=bold ctermbg=9 gui=bold guibg=Red

@@ -69,4 +69,8 @@ function! GetRoot()
     return rootPath
 endfunction
 
-map <leader>j :call VimJump()<CR>
+function! GetPos()
+    let pos = getreg('o')
+    echo pos
+endfunction
+nmap ii :call GetPos()<CR>
