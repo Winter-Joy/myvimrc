@@ -11,6 +11,11 @@ ab atime <c-r>=strftime("%Y-%m-%d %H:%M:%S")<cr>
 ab azgj zhangguojun
 iab zg zhangguojun
 ab pa call Paste()
+iab aquery $query = self::select()
+iab aret return $query ? $query->toArray():[];
+iab This this
+iab tihs this
+iab studnet student
 
 inoremap jk <ESC>
 let g:UltiSnipsListSnippets = "<leader><tab>"
@@ -70,6 +75,7 @@ nnoremap <leader>F :CtrlSF<space>
 vmap <leader>F <Plug>CtrlSFVwordPath
 nnoremap <leader>3 :CtrlSFToggle<CR>
 
+
 "检测php语法
 noremap <leader>ss :call CheckPHP()<CR>
 
@@ -123,14 +129,16 @@ nnoremap z za " 切换折叠状态
 noremap g :GitGutterToggle<CR>
 noremap G :GitGutterLineHighlightsToggle<CR>
 
+
 "自定义配置键
 nmap <leader>so :so %<CR>
 nmap sp <Plug>(ale_previous_wrap)
 nmap sn <Plug>(ale_next_wrap)
 map <leader>w <ESC>:w<CR>
 "nmap <nowait> <leader>X <leader>h<CR>
-inoremap <leader>q <ESC>A;<ESC>
-
+"inoremap <leader>q <ESC>A;<ESC>
+inoremap <leader>; <ESC>A;<ESC>
+inoremap <leader>, <ESC>A,<ESC>
 "退出
 nmap q :q<CR>
 nnoremap gq q

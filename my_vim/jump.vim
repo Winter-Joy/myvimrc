@@ -73,4 +73,3 @@ function! GetPos()
     let pos = getreg('o')
     echo pos
 endfunction
-nmap ii :call GetPos()<CR>
