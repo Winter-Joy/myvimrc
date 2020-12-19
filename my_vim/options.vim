@@ -38,10 +38,8 @@ set copyindent
 
 "color
 hi Comment ctermfg =darkgrey
-
-autocmd InsertLeave WinEnter * set cursorline
-autocmd InsertEnter WinLeave * set nocursorline
-
+hi Normal ctermbg=none
+hi CursorLine   cterm=NONE ctermbg=235
 "autocmd BufWritePost *.php call CheckPHP()
 au BufNewFile,BufRead *.css,*.html,*.js,*.vue setlocal tabstop=2
 au BufNewFile,BufRead *.css,*.html,*.js,*.vue setlocal softtabstop=2
@@ -71,10 +69,10 @@ autocmd FileType wxml setlocal filetype=html
 autocmd FileType wxss setlocal filetype=css
 autocmd FileType blade setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 "autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-hi Normal ctermfg=252 ctermbg=none
+"let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+"let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+"let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+"hi Normal ctermfg=252 ctermbg=none
 "set autowriteall
 set updatetime=300
 au BufWinLeave * silent mkview  " 保存文件的折叠状态

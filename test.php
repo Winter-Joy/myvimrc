@@ -1,5 +1,19 @@
 <?php
-$a = [1,2];
-echo 2^2;
-//$c = array_slice($a,0,1);
-//print_r($c);
+/**
+* @property \Core\Repositories\Admin\MenuRepository menuRepo 
+* @property asdfasdf
+* @property  bbbbb
+"
+*/
+class test{
+
+}
+//$str = "* @property \ Core\Repositories\Admin\MenuRepository menuRepo 
+//";
+$classReflaction = new \ReflectionClass("test");
+$comment = $classReflaction->getDocComment();
+$preg =  "/[\s]*\*[\s]*@property[\s]*.+\n/";
+preg_match_all($preg, $comment, $p);
+
+
+print_r($p);

@@ -184,3 +184,5 @@ function! CocTimerStart(timer)
 	"endif
 endfunction
 call timer_start(500,'CocTimerStart',{'repeat':1})
+
+nnoremap <silent> <leader>>y  :<C-u>CocList -A --normal yank<cr>

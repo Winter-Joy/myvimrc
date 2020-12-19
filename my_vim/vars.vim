@@ -17,26 +17,9 @@ let g:DoxygenToolkit_classTag = "class\t"
 let g:DoxygenToolkit_authorName = "zhangguojun"
 let g:doxygen_enhanced_color = 1
 
-"tagbar
-"设置tagbar使用的ctags的插件,必须要设置对
-"let g:tagbar_ctags_bin='/usr/bin/ctags'
-"let g:tagbar_show_linenumbers=1
-"""设置tagbar的窗口宽度
-"let g:tagbar_width=30
-"""设置tagbar的窗口显示的位置,为左边
-"let g:tagbar_right=1
-"let Tlist_Ctags_Cmd="/usr/local/bin/ctags"
-""自动折叠
-"let Tlist_File_Fold_Auto_Close=1
-"set tags=./tags,./TAGS,tags;~,TAGS;~
 set tags=./tags;
 
-
 au BufRead,BufNewFilE *.blade.php    set filetype=blade
-"mru
-"let MRU_Max_Menu_Entries = 20
-"let MRU_Window_Height = 20
-"source ~/.vim/bundle/php-doc.vim
 
 "devicons
 let g:webdevicons_enable_nerdtree = 1

@@ -36,7 +36,6 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'posva/vim-vue'
 "Plugin 'prabirshrestha/vim-lsp'
 "Plugin 'prabirshrestha/async.vim'
-"Plugin 'neoclide/coc.nvim'
 "Plugin 'zgpio/coc.nvim'
 Plugin 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plugin 'L9'
@@ -59,13 +58,14 @@ Plugin 'easymotion/vim-easymotion'
 ""Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 "Plugin 'joonty/vdebug'
 Plugin 'chemzqm/wxapp.vim'
-"Plugin 'ryanoasis/vim-devicons'
+Plugin 'ryanoasis/vim-devicons'
 ""Plugin 'edkolev/tmuxline.vim'
 ""Plugin 'vim-scripts/indentpython.vim'
 ""Plugin 'nvie/vim-flake8'
 ""Plugin 'Chiel92/vim-autoformat'
 ""Plugin 'davidhalter/jedi-vim'
 Plugin 'vim-scripts/DrawIt'
+Plugin 'vim/killersheep'
 
 call vundle#end()
 filetype plugin indent on 
@@ -80,5 +80,4 @@ source ~/.vim/my_vim/vars.vim
 "source ~/.vim/my_vim/ycm.vim
 source ~/.vim/my_vim/jump.vim
 source ~/.vim/my_vim/coc.vim
-
 "source ~/.vim/my_vim/lsp.vim

@@ -7,15 +7,18 @@ endif
 let b:my_map_vim = 1
 
 "ab命令
-ab atime <c-r>=strftime("%Y-%m-%d %H:%M:%S")<cr>
-ab azgj zhangguojun
-iab zg zhangguojun
 ab pa call Paste()
+ab nf NERDTreeFind
+
 iab aquery $query = self::select()
 iab aret return $query ? $query->toArray():[];
 iab This this
 iab tihs this
 iab studnet student
+iab Studnet Student
+iab atime <c-r>=strftime("%Y-%m-%d %H:%M:%S")<cr>
+iab azgj zhangguojun
+iab zg zhangguojun
 
 inoremap jk <ESC>
 let g:UltiSnipsListSnippets = "<leader><tab>"
@@ -50,7 +53,7 @@ nmap \8 <Plug>AirlineSelectTab8
 nmap \9 <Plug>AirlineSelectTab9
 
 "ctags
-map <F5>  :!ctags -R --exclude=vendor --exclude=node_modules
+map <F5>  :!ctags -R --exclude=vendor --exclude=node_modules<cr>
 
 "复制粘贴
 vnoremap <C-y> "+y
@@ -85,8 +88,7 @@ func! PRUN()
 	if &filetype == 'sh'
 		:!time bash %
 	elseif &filetype == 'python'
-		exec "!clear"
-		exec "!time python3 %"
+		exec "!clear &time python3 %"
 	elseif &filetype == 'c'
 		exec "!gcc %&clear &time ./a.out"
 	elseif &filetype == 'php'
@@ -107,6 +109,7 @@ map <leader>co : Dox<CR><ESC>xmxk=9j`xA
 map ffg : DoxAuthor<cr>
 
 "emmet
+let g:user_emmet_expandabbr_key = '<C-b>'
 imap <C-b> <plug>(emmet-expand-abbr)
 
 noremap <leader>ie :IndentGuidesToggle<cr>
@@ -136,6 +139,7 @@ nmap sp <Plug>(ale_previous_wrap)
 nmap sn <Plug>(ale_next_wrap)
 map <leader>w <ESC>:w<CR>
 "nmap <nowait> <leader>X <leader>h<CR>
+"
 "inoremap <leader>q <ESC>A;<ESC>
 inoremap <leader>; <ESC>A;<ESC>
 inoremap <leader>, <ESC>A,<ESC>

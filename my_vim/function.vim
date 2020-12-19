@@ -29,3 +29,43 @@ function! OpenBrowser()
     "echohl command_str
     "execute "!". command_str
 endfunction
+
+function! Pop()
+    let g:intro = popup_create([
+                \   #{text: '   The sheep are out to get you!',
+                \     props: [#{col: 4, length: 29,type:"sheepTitle"}]}
+                \ ], #{
+                \   border: [],
+                \   padding: [],
+                \   mapping: 0,
+                \   drag: 1,
+                \   close: 'button',
+                \ })
+    call timer_start(500,'PopClose',{'repeat':1})
+endfunction
+
+function! PopClose()
+    popup_close(g:intro)
+endfunction
+
+" vue 注释配置
+let g:ft = ''
+fu! NERDCommenter_before()
+  if &ft == 'vue'
+    let g:ft = 'vue'
+    let stack = synstack(line('.'), col('.'))
+    if len(stack) > 0
+      let syn = synIDattr((stack)[0], 'name')
+      if len(syn) > 0
+        let syn = tolower(syn)
+        exe 'setf '.syn
+      endif
+    endif
+  endif
+endfu
+fu! NERDCommenter_after()
+  if g:ft == 'vue'
+    setf vue
+    let g:ft = ''
+  endif
+endfu
