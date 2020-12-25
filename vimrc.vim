@@ -67,6 +67,8 @@ Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-scripts/DrawIt'
 Plugin 'vim/killersheep'
 
+Plugin 'fatih/vim-go'
+
 call vundle#end()
 filetype plugin indent on 
 

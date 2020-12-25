@@ -69,3 +69,49 @@ fu! NERDCommenter_after()
     let g:ft = ''
   endif
 endfu
+
+"vim中自动显示搜索匹配数
+let s:prevcountcache=[[], 0]
+function! ShowCount()
+    let key=[@/, b:changedtick]
+    if len(key) == 0
+        return ''
+    endif
+    if s:prevcountcache[0]==#key
+        if s:prevcountcache[1] < 1
+            return ''
+        endif
+        return '搜索总数:'.s:prevcountcache[1]
+    endif
+    let s:prevcountcache[0]=key
+    let s:prevcountcache[1]=0
+    let pos=getpos('.')
+    try
+        redir => subscount
+        silent %s///gne
+        redir END
+        let result= matchstr(subscount, '\d\+')
+        if result < 1
+            return ''
+        endif
+        let s:prevcountcache[1]=result
+        let result = '搜索总数:'.result
+        return result
+    finally
+        call setpos('.', pos)
+    endtry
+endfunction
+
+
+function! GetSearchCount()
+    Normal :vimgrep //g %<cr>
+endfunction
+
+function! GetVisualSelection()
+    let raw_search = @"
+    let @/=substitute(escape(raw_search, '\/.*$^~[]'), "\n", '\\n', "g")
+endfunction
+"xnoremap // ""y:call GetVisualSelection()<bar>:%s///gn<cr>
+
+let g:airline_section_c='%{ShowCount()} %<%f %h%m%r%=%-14.(%l,%c%V%) %P'
+"let g:airline_section_gutter = '%{ShowCount()}'

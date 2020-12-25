@@ -1,14 +1,24 @@
 "=========================================
 " Author: zhangguojun  
 " 
+" 
+"__        ___       _            _
+"\ \      / (_)_ __ | |_ ___ _ __(_) ___  _   _
+" \ \ /\ / /| | '_ \| __/ _ \ '__| |/ _ \| | | |
+"  \ V  V / | | | | | ||  __/ |  | | (_) | |_| |
+"   \_/\_/  |_|_| |_|\__\___|_| _/ |\___/ \__, |
+"                              |__/       |___/
+"
 if exists("b:my_map_vim")
-	finish
+    finish
 endif
 let b:my_map_vim = 1
 
 "ab命令
 ab pa call Paste()
 ab nf NERDTreeFind
+ab todo #Todo
+ab addtag call system("ctags -a ".expand('%'))
 
 iab aquery $query = self::select()
 iab aret return $query ? $query->toArray():[];
@@ -54,6 +64,7 @@ nmap \9 <Plug>AirlineSelectTab9
 
 "ctags
 map <F5>  :!ctags -R --exclude=vendor --exclude=node_modules<cr>
+map <F6> :call system("ctags -a ".expand('%'))<cr>
 
 "复制粘贴
 vnoremap <C-y> "+y
@@ -117,7 +128,7 @@ noremap <leader>ie :IndentGuidesToggle<cr>
 "移动
 noremap H ^
 noremap L g_
-inoremap <c-l> <ESC>la
+inoremap <c-l> <ESC>
 
 "注释
 map c <Plug>NERDCommenterToggle
@@ -146,3 +157,7 @@ inoremap <leader>, <ESC>A,<ESC>
 "退出
 nmap q :q<CR>
 nnoremap gq q
+
+"nmap <leader>n :cn
+"nmap <leader>N :cp
+"nmap <leader>/ :vimgrep //g %

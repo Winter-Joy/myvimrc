@@ -68,6 +68,7 @@ autocmd FileType php setlocal iskeyword+=$
 autocmd FileType wxml setlocal filetype=html
 autocmd FileType wxss setlocal filetype=css
 autocmd FileType blade setl shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+"autocmd BufWritePost * call system("ctags -a ".expand('%'))
 "autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 "let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 "let &t_SR = "\<Esc>]50;CursorShape=2\x7"
