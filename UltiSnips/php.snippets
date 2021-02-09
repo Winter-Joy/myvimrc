@@ -125,7 +125,7 @@ snippet try "try catch"
 try{
 	${VISUAL}
 }catch(\Exception $e){
-	throw new \Exception('${1:$e->getMessage()}')
+	throw new \Exception(${1:$e->getMessage()})
 }
 endsnippet
 

@@ -3,7 +3,7 @@
 " 
 " 
 "__        ___       _            _
-"\ \      / (_)_ __ | |_ ___ _ __(_) ___  _   _
+            "\ \      / (_)_ __ | |_ ___ _ __(_) ___  _   _
 " \ \ /\ / /| | '_ \| __/ _ \ '__| |/ _ \| | | |
 "  \ V  V / | | | | | ||  __/ |  | | (_) | |_| |
 "   \_/\_/  |_|_| |_|\__\___|_| _/ |\___/ \__, |
@@ -76,9 +76,9 @@ nnoremap <leader>p :call Paste()<CR>
 nnoremap <leader>P :call NoPaste()<CR>
 
 "有道翻译
-vnoremap <silent> <leader>t :<C-u>Ydv<CR>
-nnoremap <silent> <leader>t :<C-u>Ydc<CR>
-noremap <leader>yd :<C-u>Yde<CR>
+"vnoremap <silent> <leader>t :<C-u>Ydv<CR>
+"nnoremap <silent> <leader>t :<C-u>Ydc<CR>
+"noremap <leader>yd :<C-u>Yde<CR>
 
 "nnoremap <c-k> :YcmCompleter GoToDeclaration<CR>|
 "nnoremap <c-h> :YcmCompleter GoToDefinition<CR>|
@@ -95,24 +95,26 @@ noremap <leader>ss :call CheckPHP()<CR>
 
 nnoremap <leader>rr :call PRUN()<CR>
 func! PRUN()
-	exec "w"
-	if &filetype == 'sh'
-		:!time bash %
-	elseif &filetype == 'python'
-		exec "!clear &time python3 %"
-	elseif &filetype == 'c'
-		exec "!gcc %&clear &time ./a.out"
-	elseif &filetype == 'php'
-		exec "!clear &time php %"
-	elseif &filetype == 'html'
-		exec "call OpenBrowser()"
-	elseif &filetype == 'javascript'
-		exec "!clear & time node %"
-	endif
+    exec "w"
+    if &filetype == 'sh'
+        :!time bash %
+    elseif &filetype == 'python'
+        exec "!clear &time python3 %"
+    elseif &filetype == 'c'
+        exec "!gcc %&clear &time ./a.out"
+    elseif &filetype == 'php'
+        exec "!clear &time php %"
+    elseif &filetype == 'go'
+        exec "!clear &time go run %"
+    elseif &filetype == 'html'
+        exec "call OpenBrowser()"
+    elseif &filetype == 'javascript'
+        exec "!clear & time node %"
+    endif
 endfunc
 func! RunPythonDebug()
-	exec "w"
-	exec "!python3 -m pdb %"
+    exec "w"
+    exec "!python3 -m pdb %"
 endfunc
 
 nnoremap <leader>ry :call RunPythonDebug()<CR>
@@ -131,7 +133,7 @@ noremap L g_
 inoremap <c-l> <ESC>
 
 "注释
-map c <Plug>NERDCommenterToggle
+map c <plug>NERDCommenterToggle
 
 "格式化
 map = gg=G``
@@ -158,6 +160,9 @@ inoremap <leader>, <ESC>A,<ESC>
 nmap q :q<CR>
 nnoremap gq q
 
+nnoremap <silent> <leader>4 :DBUIToggle<CR>
+
 "nmap <leader>n :cn
 "nmap <leader>N :cp
 "nmap <leader>/ :vimgrep //g %
+noremap <leader>5 :MarkdownPreviewToggel<CR>

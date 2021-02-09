@@ -22,12 +22,12 @@ function! CheckPHP()
 endfunction
 
 function! OpenBrowser()
-    let result = system('php -S 127.0.0.1:8888')
-    echo result
-    "let file_path = g:home_path .expand('%')
-    "let command_str = "xdg-open "."'".file_path."'"
-    "echohl command_str
-    "execute "!". command_str
+    "let result = system('php -S 127.0.0.1:8888')
+    "echo result
+    let file_path = g:home_path .expand('%')
+    let command_str = "xdg-open "."'".file_path."'"
+    echohl command_str
+    execute "!". command_str
 endfunction
 
 function! Pop()
@@ -115,3 +115,59 @@ endfunction
 
 let g:airline_section_c='%{ShowCount()} %<%f %h%m%r%=%-14.(%l,%c%V%) %P'
 "let g:airline_section_gutter = '%{ShowCount()}'
+function! AccentDemo()
+  let keys = ['a','b','c','d','e','f','g','h']
+  for k in keys
+    call airline#parts#define_text(k, k)
+  endfor
+  call airline#parts#define_accent('a', 'red')
+  call airline#parts#define_accent('b', 'green')
+  call airline#parts#define_accent('c', 'blue')
+  call airline#parts#define_accent('d', 'yellow')
+  call airline#parts#define_accent('e', 'orange')
+  call airline#parts#define_accent('f', 'purple')
+  call airline#parts#define_accent('g', 'bold')
+  call airline#parts#define_accent('h', 'italic')
+  let g:airline_section_a = airline#section#create(keys)
+endfunction
+"autocmd VimEnter * call AccentDemo()
+
+func! FindInPath()
+    if !exists("g:nerdtree_search_command")
+      let g:nerdtree_search_command = "CtrlSF"
+    endif
+    let l:nodePath = g:NERDTreeFileNode.GetSelected().path.str()
+    let prompt = "search:"
+    let searchText = input(prompt)
+    if searchText ==# ''
+        call nerdtree#echo('canceled')
+        return
+    endif
+    let command_str = g:nerdtree_search_command." ". searchText." ".l:nodePath
+    NERDTreeClose
+    exe command_str
+    CtrlSFFocus
+    redraw!
+endfunc
+"
+func! AddNerdTreeMenu()
+    if exists("g:add_nerdtree_search_menu")
+        return
+    endif
+
+    let g:add_nerdtree_search_menu = 1
+    let dic = {"text":"(f)ind in path","shortcut":"f","callback":function("FindInPath")}
+    call NERDTreeAddMenuItem(dic)
+endfunc
+
+function! HeaderPython()
+　　call setline(1, "#!/usr/bin/env python")
+　　call append(1, "#-*- coding:utf8 -*-")
+　　call append(2, "# Created By Winterjoy" . strftime('%Y-%m-%d %T', localtime()))
+　　normal G
+　　normal o
+　　normal o
+　　endf
+endfunction
+ 
+autocmd bufnewfile *.py call HeaderPython()

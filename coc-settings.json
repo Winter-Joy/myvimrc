@@ -8,10 +8,16 @@
                 "storagePath": "/tmp/intelephense"
             }
         },
+		"golang": {
+            "command": "gopls",
+            "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+            "filetypes": ["go"],
+            "initializationOptions": {
+                "usePlaceholders": true
+            }
+        },
         "python.jediEnabled":false
     },
-	"tabnine.shortcut": "TN",
-	"tabnine.priority": 100,
 	"clangd.enabled": true,
 	"clangd.path":"/usr/bin/clangd"
 }

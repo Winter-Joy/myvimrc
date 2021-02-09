@@ -112,3 +112,8 @@ let g:autoclose_vim_commentmode = 1
 " 对齐线
 let g:indent_guides_enable_on_vim_startup = 0
 let g:indent_guides_auto_colors = 1
+
+let g:go_doc_keywordprg_enabled = 1
+
+"markdown
+let g:mkdp_path_to_chrome = "/mnt/c/Program Files(x86)/Microsoft/Edge/Application/msedge.exe"
