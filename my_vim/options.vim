@@ -41,7 +41,8 @@ set copyindent
 hi Comment ctermfg =darkgrey
 hi CursorLine   cterm=NONE ctermbg=235
 hi VertSplit ctermfg=235 ctermbg=235
-hi Normal ctermfg=231 ctermbg=235 cterm=NONE guifg=#f8f8f2 guibg=#272822 gui=NONE 
+"hi Normal ctermfg=231 ctermbg=235 cterm=NONE guifg=#f8f8f2 guibg=#272822 gui=NONE 
+hi Normal  ctermbg=None cterm=NONE 
 hi CursorLine ctermfg=NONE ctermbg=237 cterm=NONE
 hi LineNr ctermfg=109 ctermbg=237 cterm=NONE guifg=#90908a guibg=#3c3d37 gui=NONE
 hi DiffAdd     ctermbg=4 guibg=darkblue
@@ -104,5 +105,3 @@ let g:gundo_prefer_python3 = 1
 
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
-
-

@@ -73,20 +73,13 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-scripts/DoxygenToolkit.vim'
 Plugin 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plugin 'mattn/calendar-vim'
 
 call vundle#end()
 filetype plugin indent on 
 
 execute pathogen#infect()
 
-"sources
-source ~/.vim/my_vim/function.vim
-source ~/.vim/my_vim/options.vim
-source ~/.vim/my_vim/map.vim
-source ~/.vim/my_vim/vars.vim
-"source ~/.vim/my_vim/ycm.vim
-"source ~/.vim/my_vim/jump.vim
-source ~/.vim/my_vim/coc.vim
-source ~/.vim/my_vim/command.vim
-"source ~/.vim/my_vim/db.vim
-"source ~/.vim/my_vim/lsp.vim
+for f in split(glob('~/.vim/my_vim/*.vim'), '\n')
+	exe 'source' f
+endfor
